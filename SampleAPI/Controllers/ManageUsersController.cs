@@ -1,32 +1,32 @@
-﻿using System.Collections.Generic;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using SampleAPI.Models;
 
 namespace SampleAPI.Controllers
 {
     [ApiController]
-    [Route("api/library/users/{userId}")]
-    public class LibraryUserController : ControllerBase
+    [Route("api/users/manage")]
+    public class ManageUserController : ControllerBase
     {
-        public LibraryUserController()
+        public ManageUserController()
         {
         }
 
-        [Route("borrow/{bookId}")]
-        public bool PostBorrowBook(int userId, int bookId)
+        [Route("add")]
+        public bool AddUser([FromBody] User user)
         {
             return true;
         }
 
-        [Route("return/{bookId}")]
-        public bool PutReturnBook(int userId, int bookId)
+        [Route("{userId}/update")]
+        public bool UpdateUser(int userId, [FromBody] User user)
         {
             return true;
         }
 
-        [Route("logs")]
-        public IEnumerable<string> GetUserLogs(int userId)
+        [Route("{userId}/delete")]
+        public bool DeleteUser(int userId)
         {
-            return new List<string>();
+            return true;
         }
     }
 }
